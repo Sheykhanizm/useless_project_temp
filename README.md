@@ -6,30 +6,33 @@
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: cossy
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Nanditha S - Sree Chitra Thirunal College of Engineering
+- Member 1: Sheikha Nizam - Sree Chitra Thirunal College of Engineering
+
 
 ### Project Description
-[2-3 lines about what your project does]
+A vada hole radius finder-VadaMetrixTM. It measures the radius of the hole in a vada off of a picture of it.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+The mystery of the vada hole radius.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+The virtual vada measurer-VadaMetrixTM
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- HTML, JavaScript
+- Vanilla HTML5 & Modern Web Platform
+- HTML5 Canvas 2D API
+- Metrology & Geometric Engine
+ Euclidean 2-point pixel-to-metric scalar calibration converter
+ Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave, Opera.
+ VS Code / Any text editor.
 
 For Hardware:
 - [List main components]
@@ -39,23 +42,25 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-[commands]
+none
 
 # Run
-[commands]
+start index.html
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+<img width="1917" height="862" alt="Screenshot 2026-09-13 175838" src="https://github.com/user-attachments/assets/7f7c0cc9-440d-4745-9d49-4ba3e237b61b" />
+The first page of the project
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+<img width="1913" height="861" alt="Screenshot 2026-09-13 175906" src="https://github.com/user-attachments/assets/f0945117-d052-4df8-a371-7d533a9f236c" />
+page receiving the input image and other relevant details
+
+<img width="1916" height="857" alt="Screenshot 2026-09-13 180021" src="https://github.com/user-attachments/assets/0debbd83-2eb4-4fc6-abe2-1c2dcf888456" />
+Certificate generated as per the vada radius
+
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
@@ -82,9 +87,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
+https://drive.google.com/file/d/1vcP2K3ckeszygjJIk6rKyUir0w3HQKwS/view?usp=drive_link
 # Additional Demos
 [Add any extra demo materials/links]
 
