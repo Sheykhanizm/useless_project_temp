@@ -2,7 +2,7 @@
 
 
 
-# [Project Name] 🎯
+# VadaMatrixTM 🎯
 
 
 ## Basic Details
