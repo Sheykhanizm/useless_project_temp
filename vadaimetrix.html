@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>വടമെട്രിക്സ്™ - VadaMetrix</title>
+
+<!-- Chunky Malayalam & Yellow Accent Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@800&family=Fredoka:wght@600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-red-deep: #1d0404;
+    --card-bg: rgba(42, 8, 8, 0.90);
+    --yellow-bright: #FACC15;
+    --yellow-soft: #FEF08A;
+    --yellow-deep: #CA8A04;
+    --border-gold: rgba(250, 204, 21, 0.38);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    /* Dark Indian Red with Royal Indian Mandala Block Print */
+    background-color: var(--bg-red-deep);
+    background-image: 
+      radial-gradient(circle at 50% 30%, rgba(85, 14, 14, 0.65) 0%, rgba(20, 3, 3, 0.95) 100%),
+      url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FACC15' fill-opacity='0.08'%3E%3Cpath d='M35 0 C40 14 56 14 70 0 C56 14 56 30 70 35 C56 40 56 56 70 70 C56 56 40 56 35 70 C30 56 14 56 0 70 C14 56 14 40 0 35 C14 30 14 14 0 0 C14 14 30 14 35 0 Z'/%3E%3Ccircle cx='35' cy='35' r='8' fill='none' stroke='%23FACC15' stroke-width='1.2' stroke-opacity='0.12'/%3E%3Ccircle cx='35' cy='35' r='14' fill='none' stroke='%23FACC15' stroke-width='0.8' stroke-dasharray='2,2' stroke-opacity='0.1'/%3E%3Cpath d='M35 24 C37 29 41 33 46 35 C41 37 37 41 35 46 C33 41 29 37 24 35 C29 33 33 29 35 24 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    color: var(--yellow-soft);
+    font-family: 'Fredoka', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 16px 80px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .main-layout {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    gap: 30px;
+  }
+
+  /* Center App Container */
+  .app-container {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    z-index: 10;
+  }
+
+  /* --- ANIMATED AUTO AT THE BOTTOM RIGHT --- */
+  .auto-side-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 165px;
+    height: 145px;
+    z-index: 999;
+    pointer-events: none;
+    animation: autoIdleMove 2s infinite ease-in-out;
+  }
+
+  .auto-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6));
+  }
+
+  /* Engine Idle Motion */
+  @keyframes autoIdleMove {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(-1deg); }
+    50% { transform: translateY(0) rotate(0deg); }
+    75% { transform: translateY(-2px) rotate(0.8deg); }
+  }
+
+  /* Exhaust Smoke Puffs */
+  .smoke-cloud {
+    position: absolute;
+    bottom: 22px;
+    right: 14px;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, rgba(230, 230, 230, 0.75) 0%, rgba(180, 180, 180, 0.4) 50%, rgba(100, 100, 100, 0) 100%);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .smoke-1 { animation: puffSmoke 2.2s infinite ease-out 0s; }
+  .smoke-2 { animation: puffSmoke 2.2s infinite ease-out 0.7s; }
+  .smoke-3 { animation: puffSmoke 2.2s infinite ease-out 1.4s; }
+
+  @keyframes puffSmoke {
+    0% {
+      opacity: 0.8;
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translate(35px, -18px) scale(2.6);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(65px, -35px) scale(4.2);
+    }
+  }
+
+  /* --- TIRE SKID & DRIVE-AWAY ANIMATION --- */
+  .auto-side-wrapper.driving-away {
+    animation: autoZoomAcross 1.35s cubic-bezier(0.25, 0.1, 0.25, 1) forwards !important;
+  }
+
+  @keyframes autoZoomAcross {
+    0% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    12% {
+      transform: translateX(18px) translateY(2px) rotate(-4deg);
+    }
+    28% {
+      transform: translateX(-18vw) translateY(-4px) rotate(3.5deg);
+    }
+    55% {
+      transform: translateX(-60vw) translateY(0px) rotate(1deg);
+    }
+    85% {
+      transform: translateX(-105vw) translateY(-2px) rotate(2deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(-100vw - 260px)) translateY(0px) rotate(2deg);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .burnout-smoke {
+    position: absolute;
+    bottom: 8px;
+    left: 40px;
+    width: 25px;
+    height: 15px;
+    background: radial-gradient(ellipse, rgba(240, 240, 240, 0.85) 0%, rgba(180, 180, 180, 0.4) 60%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .driving-away .burnout-smoke {
+    animation: burnoutPuff 0.9s ease-out forwards;
+  }
+
+  @keyframes burnoutPuff {
+    0% { opacity: 0.9; transform: scale(1) translateX(0); }
+    50% { opacity: 0.7; transform: scale(3.5) translateX(30px); }
+    100% { opacity: 0; transform: scale(6) translateX(70px); }
+  }
+
+  .auto-side-wrapper.gone {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .auto-side-wrapper {
+      width: 130px;
+      height: 115px;
+      bottom: 12px;
+      right: 15px;
+    }
+  }
+
+  /* --- SCREEN 1: LANDING --- */
+  #screen-landing {
+    text-align: center;
+    padding: 16px 10px;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .malayalam-title {
+    font-family: 'Anek Malayalam', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--yellow-bright);
+    text-shadow: 
+      3px 3px 0px #120202,
+      0 0 25px rgba(250, 204, 21, 0.45);
+    line-height: 1.15;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+    color: var(--yellow-soft);
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  }
+
+  .vada-hero-wrap {
+    margin: 10px auto 24px;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatVada 3.2s ease-in-out infinite;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .hero-vada-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent !important;
+    filter: drop-shadow(0 12px 25px rgba(0,0,0,0.6)) drop-shadow(0 0 20px rgba(250, 204, 21, 0.4));
+  }
+
+  @keyframes floatVada {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(2deg) scale(1.02); }
+  }
+
+  .btn-start {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 13px 44px;
+    border-radius: 40px;
+    border: 2px solid var(--yellow-bright);
+    background: var(--yellow-bright);
+    color: #2b0606;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(250, 204, 21, 0.35);
+    transition: all 0.2s;
+  }
+  .btn-start:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: #fde047;
+    box-shadow: 0 8px 24px rgba(250, 204, 21, 0.5);
+  }
+  .btn-start:active {
+    transform: translateY(1px);
+  }
+
+  /* --- SCREEN 2: WORKBENCH --- */
+  #screen-workbench {
+    display: none;
+    animation: fadeIn 0.35s ease-out;
+  }
+
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-gold);
+  }
+  .header-bar h2 {
+    font-family: 'Anek Malayalam', sans-serif;
+    color: var(--yellow-bright);
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
+
+  .step-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .step-card.active {
+    border-color: var(--yellow-bright);
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.2);
+  }
+
+  .step-head {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .badge-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--yellow-bright);
+    color: #2b0606;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--yellow-bright);
+  }
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--yellow-soft);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  button {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--yellow-bright);
+    cursor: pointer;
+    background: var(--yellow-bright);
+    color: #2b0606;
+    transition: all 0.15s;
+  }
+  button:hover { background: #fde047; }
+  button.secondary {
+    background: transparent;
+    color: var(--yellow-soft);
+    border: 1px solid var(--border-gold);
+  }
+  button.secondary:hover {
+    border-color: var(--yellow-bright);
+    color: var(--yellow-bright);
+  }
+  button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .canvas-container {
+    background: #000;
+    border-radius: 12px;
+    padding: 4px;
+    margin-top: 8px;
+    display: none;
+    border: 1.5px solid var(--yellow-deep);
+  }
+  .canvas-container.show { display: block; }
+  canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  .verdict-box {
+    background: rgba(20, 3, 3, 0.75);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    display: none;
+    border-left: 4px solid var(--yellow-bright);
+  }
+  .big-stat {
+    font-family: 'Space Mono', monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--yellow-bright);
+    line-height: 1.1;
+  }
+  .verdict-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 6px;
+    color: var(--yellow-soft);
+  }
+
+  input[type=number], select {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--yellow-deep);
+    background: #1a0505;
+    color: var(--yellow-bright);
+  }
+  input[type=number] { width: 85px; }
+
+  /* Certificate Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    z-index: 1000;
+  }
+  .modal-card {
+    background: #240505;
+    border: 2px solid var(--yellow-bright);
+    border-radius: 18px;
+    max-width: 620px;
+    width: 100%;
+    padding: 18px;
+    text-align: center;
+  }
+  #certCanvas {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="main-layout">
+
+  <!-- ==================== CENTER: VADAMETRIX WORKBENCH ==================== -->
+  <main class="app-container">
+
+    <!-- SCREEN 1: LANDING -->
+    <div id="screen-landing">
+      <div class="malayalam-title">വടമെട്രിക്സ്™</div>
+      <p class="tagline">Vada Hole Radius Finder</p>
+
+      <!-- Floating Vada (No Background Cutout) -->
+      <div class="vada-hero-wrap">
+        <img src="vada_nobg.png" 
+             id="landingVadaImg" 
+             class="hero-vada-img" 
+             alt="Sparkling Vada"
+             onerror="this.onerror=null; this.src='file:///C:/Users/Soorya%20dev/Downloads/vada_nobg.png';">
+      </div>
+
+      <div>
+        <button class="btn-start" id="startBtn">START</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: WORKBENCH -->
+    <div id="screen-workbench">
+      <div class="header-bar">
+        <h2>വടമെട്രിക്സ്™</h2>
+        <button class="secondary" id="backToHomeBtn">🏠 Home</button>
+      </div>
+
+      <!-- STEP 1: LOAD PHOTO -->
+      <div class="step-card active" id="step1">
+        <div class="step-head">
+          <div class="badge-num">1</div>
+          <div class="step-title">Load Photo</div>
+        </div>
+        <div class="step-desc">Choose a vada image:</div>
+        <div class="btn-row">
+          <input type="file" id="fileInput" accept="image/*" style="display:none;">
+          <button type="button" id="uploadBtn">📁 Upload Image</button>
+          <button type="button" class="secondary" id="sampleBtn">✨ Use Sample Vada</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: MARK HOLE -->
+      <div class="step-card" id="step2">
+        <div class="step-head">
+          <div class="badge-num">2</div>
+          <div class="step-title">Mark 3 Points on Hole Rim</div>
+        </div>
+        <div class="step-desc">Tap 3 points around the inner hole edge.</div>
+
+        <div class="canvas-container" id="canvasWrap">
+          <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="btn-row" style="margin-top: 8px;">
+          <button type="button" class="secondary" id="undoBtn" disabled>↩ Undo</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: RESULT & ASSESSMENT -->
+      <div class="step-card" id="step3">
+        <div class="step-head">
+          <div class="badge-num">3</div>
+          <div class="step-title">Radius & Assessment</div>
+        </div>
+        
+        <div class="verdict-box" id="resultBox">
+          <div style="font-size: 0.8rem; color: var(--yellow-deep); text-transform: uppercase;">Hole Radius</div>
+          <div class="big-stat" id="radiusPx">–</div>
+          <div class="verdict-text" id="verdictText">–</div>
+        </div>
+      </div>
+
+      <!-- STEP 4: CALIBRATION -->
+      <div class="step-card" id="step4">
+        <div class="step-head">
+          <div class="badge-num">4</div>
+          <div class="step-title">Real-World Size (Optional)</div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="secondary" id="calibrateBtn" disabled>📏 Calibrate</button>
+        </div>
+
+        <div id="calibArea" style="display:none; margin-top: 10px;">
+          <div class="step-desc">Tap two points across a known object:</div>
+          <div class="btn-row" id="calibInputs" style="display:none;">
+            <input type="number" id="knownLength" min="0.1" step="any" placeholder="2.5">
+            <select id="unit">
+              <option value="cm">cm</option>
+              <option value="mm">mm</option>
+              <option value="in">in</option>
+            </select>
+            <button type="button" id="convertBtn">Calculate</button>
+          </div>
+
+          <div class="verdict-box" id="realResultBox" style="margin-top: 8px;">
+            <div style="font-size: 0.8rem; color: var(--yellow-deep);">Physical Radius</div>
+            <div class="big-stat" id="radiusReal">–</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: CERTIFICATE -->
+      <div class="step-card" id="step5">
+        <div class="step-head">
+          <div class="badge-num">5</div>
+          <div class="step-title">Certificate</div>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="certBtn" disabled>📜 View Certificate</button>
+          <button type="button" class="secondary" id="resetBtn">🔄 Start Over</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== ANIMATED AUTO WITH SMOKE AT BOTTOM ==================== -->
+  <div class="auto-side-wrapper" id="autoWrapper">
+    <img src="auto_nobg.png" 
+         class="auto-img" 
+         alt="Indian Auto Rickshaw"
+         onerror="this.onerror=null; this.src='file:///C:/Users/Soorya%20dev/Downloads/auto_nobg.png';">
+    <div class="smoke-cloud smoke-1"></div>
+    <div class="smoke-cloud smoke-2"></div>
+    <div class="smoke-cloud smoke-3"></div>
+    <div class="burnout-smoke"></div>
+  </div>
+
+</div>
+
+
+<!-- ==================== CERTIFICATE MODAL ==================== -->
+<div class="modal-overlay" id="certModal">
+  <div class="modal-card">
+    <canvas id="certCanvas" width="700" height="460"></canvas>
+    <div class="btn-row" style="justify-content: center; margin-top: 14px;">
+      <button type="button" id="downloadCertBtn">💾 Download</button>
+      <button type="button" class="secondary" id="closeCertBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== LOGIC JAVASCRIPT ==================== -->
+<script>
+(function(){
+  const screenLanding = document.getElementById('screen-landing');
+  const screenWorkbench = document.getElementById('screen-workbench');
+  const startBtn = document.getElementById('startBtn');
+  const backToHomeBtn = document.getElementById('backToHomeBtn');
+  const autoWrapper = document.getElementById('autoWrapper');
+
+  const fileInput = document.getElementById('fileInput');
+  const uploadBtn = document.getElementById('uploadBtn');
+  const sampleBtn = document.getElementById('sampleBtn');
+  const canvasWrap = document.getElementById('canvasWrap');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const undoBtn = document.getElementById('undoBtn');
+
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const step3 = document.getElementById('step3');
+  const step4 = document.getElementById('step4');
+  const resultBox = document.getElementById('resultBox');
+  const radiusPxEl = document.getElementById('radiusPx');
+  const verdictText = document.getElementById('verdictText');
+
+  const calibrateBtn = document.getElementById('calibrateBtn');
+  const calibArea = document.getElementById('calibArea');
+  const calibInputs = document.getElementById('calibInputs');
+  const knownLength = document.getElementById('knownLength');
+  const unitSelect = document.getElementById('unit');
+  const convertBtn = document.getElementById('convertBtn');
+  const realResultBox = document.getElementById('realResultBox');
+  const radiusRealEl = document.getElementById('radiusReal');
+
+  const resetBtn = document.getElementById('resetBtn');
+  const certBtn = document.getElementById('certBtn');
+  const certModal = document.getElementById('certModal');
+  const certCanvas = document.getElementById('certCanvas');
+  const downloadCertBtn = document.getElementById('downloadCertBtn');
+  const closeCertBtn = document.getElementById('closeCertBtn');
+
+  let img = null;
+  let holePoints = [];
+  let calibPoints = [];
+  let mode = 'hole';
+  let radiusPx = null;
+  let circleCenter = {x:0, y:0};
+  let realRadiusVal = null;
+  let realRadiusUnit = '';
+  let shortVerdict = '';
+
+  // -------------------------------------------------------------
+  // Web Audio API: Realistic Tire Screech + Auto Acceleration
+  // -------------------------------------------------------------
+  function playTireScreech() {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioContext();
+      if (actx.state === 'suspended') {
+        actx.resume();
+      }
+      const now = actx.currentTime;
+      const duration = 1.4;
+
+      const bufferSize = actx.sampleRate * duration;
+      const buffer = actx.createBuffer(1, bufferSize, actx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1);
+      }
+      const noiseSource = actx.createBufferSource();
+      noiseSource.buffer = buffer;
+
+      const bandpass = actx.createBiquadFilter();
+      bandpass.type = 'bandpass';
+      bandpass.frequency.setValueAtTime(2700, now);
+      bandpass.frequency.exponentialRampToValueAtTime(3200, now + 0.25);
+      bandpass.frequency.exponentialRampToValueAtTime(1900, now + 1.1);
+      bandpass.Q.setValueAtTime(14, now);
+
+      const highpass = actx.createBiquadFilter();
+      highpass.type = 'highpass';
+      highpass.frequency.setValueAtTime(1200, now);
+
+      const noiseGain = actx.createGain();
+      noiseGain.gain.setValueAtTime(0.01, now);
+      noiseGain.gain.linearRampToValueAtTime(0.45, now + 0.08);
+      noiseGain.gain.exponentialRampToValueAtTime(0.25, now + 0.8);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      noiseSource.connect(bandpass);
+      bandpass.connect(highpass);
+      highpass.connect(noiseGain);
+      noiseGain.connect(actx.destination);
+      noiseSource.start(now);
+      noiseSource.stop(now + duration);
+
+      const squealOsc = actx.createOscillator();
+      squealOsc.type = 'sawtooth';
+      squealOsc.frequency.setValueAtTime(2400, now);
+      squealOsc.frequency.linearRampToValueAtTime(2900, now + 0.2);
+      squealOsc.frequency.linearRampToValueAtTime(2050, now + 1.1);
+
+      const lfo = actx.createOscillator();
+      lfo.frequency.setValueAtTime(58, now);
+      const lfoGain = actx.createGain();
+      lfoGain.gain.setValueAtTime(250, now);
+      lfo.connect(squealOsc.frequency);
+      lfo.start(now);
+      lfo.stop(now + duration);
+
+      const squealGain = actx.createGain();
+      squealGain.gain.setValueAtTime(0.001, now);
+      squealGain.gain.linearRampToValueAtTime(0.35, now + 0.07);
+      squealGain.gain.setValueAtTime(0.28, now + 0.7);
+      squealGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      squealOsc.connect(squealGain);
+      squealGain.connect(actx.destination);
+      squealOsc.start(now);
+      squealOsc.stop(now + duration);
+
+      const engineOsc = actx.createOscillator();
+      engineOsc.type = 'sawtooth';
+      engineOsc.frequency.setValueAtTime(85, now);
+      engineOsc.frequency.exponentialRampToValueAtTime(320, now + 1.2);
+
+      const engineFilter = actx.createBiquadFilter();
+      engineFilter.type = 'lowpass';
+      engineFilter.frequency.setValueAtTime(450, now);
+      engineFilter.frequency.linearRampToValueAtTime(1500, now + 1.1);
+
+      const engineGain = actx.createGain();
+      engineGain.gain.setValueAtTime(0.01, now);
+      engineGain.gain.linearRampToValueAtTime(0.30, now + 0.1);
+      engineGain.gain.exponentialRampToValueAtTime(0.35, now + 0.7);
+      engineGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      engineOsc.connect(engineFilter);
+      engineFilter.connect(engineGain);
+      engineGain.connect(actx.destination);
+      engineOsc.start(now);
+      engineOsc.stop(now + duration);
+
+    } catch (err) {
+      console.warn('Audio playback could not start: ', err);
+    }
+  }
+
+  // -------------------------------------------------------------
+  // START BUTTON: Screech + Auto Peel-Out
+  // -------------------------------------------------------------
+  startBtn.addEventListener('click', () => {
+    playTireScreech();
+    autoWrapper.classList.remove('gone');
+    autoWrapper.classList.add('driving-away');
+
+    setTimeout(() => {
+      screenLanding.style.display = 'none';
+      screenWorkbench.style.display = 'block';
+    }, 750);
+
+    setTimeout(() => {
+      autoWrapper.classList.add('gone');
+    }, 1400);
+  });
+
+  function resetAutoToHome() {
+    autoWrapper.classList.remove('driving-away', 'gone');
+  }
+
+  backToHomeBtn.addEventListener('click', () => {
+    screenWorkbench.style.display = 'none';
+    screenLanding.style.display = 'block';
+    resetAutoToHome();
+  });
+
+  uploadBtn.addEventListener('click', () => fileInput.click());
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      img = new Image();
+      img.onload = () => setupCanvas();
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  sampleBtn.addEventListener('click', () => {
+    img = new Image();
+    img.onload = () => setupCanvas();
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = 'file:///C:/Users/Soorya%20dev/Downloads/vada_nobg.png';
+    };
+    img.src = 'vada_nobg.png';
+  });
+
+  function setupCanvas(){
+    canvas.width = img.naturalWidth || img.width;
+    canvas.height = img.naturalHeight || img.height;
+    redraw();
+    canvasWrap.classList.add('show');
+    step1.classList.remove('active');
+    step2.classList.add('active');
+    holePoints = [];
+    calibPoints = [];
+    mode = 'hole';
+    radiusPx = null;
+    realRadiusVal = null;
+    undoBtn.disabled = true;
+    resultBox.style.display = 'none';
+    calibrateBtn.disabled = true;
+    certBtn.disabled = true;
+    calibArea.style.display = 'none';
+    calibInputs.style.display = 'none';
+    realResultBox.style.display = 'none';
+  }
+
+  function getCanvasCoords(evt){
+    const rect = canvas.getBoundingClientRect();
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    const xRatio = canvas.width / rect.width;
+    const yRatio = canvas.height / rect.height;
+    return {
+      x: (clientX - rect.left) * xRatio,
+      y: (clientY - rect.top) * yRatio
+    };
+  }
+
+  canvas.addEventListener('click', (evt) => {
+    if (!img) return;
+    const pt = getCanvasCoords(evt);
+
+    if (mode === 'hole'){
+      if (holePoints.length >= 3) return;
+      holePoints.push(pt);
+      undoBtn.disabled = holePoints.length === 0;
+      redraw();
+      if (holePoints.length === 3){ computeHoleCircle(); }
+    } else if (mode === 'calib'){
+      if (calibPoints.length >= 2) return;
+      calibPoints.push(pt);
+      redraw();
+      if (calibPoints.length === 2){
+        calibInputs.style.display = 'flex';
+      }
+    }
+  });
+
+  undoBtn.addEventListener('click', () => {
+    if (mode === 'hole' && holePoints.length > 0){
+      holePoints.pop();
+      undoBtn.disabled = holePoints.length === 0;
+      resultBox.style.display = 'none';
+      calibrateBtn.disabled = true;
+      certBtn.disabled = true;
+      redraw();
+    }
+  });
+
+  function redraw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const dotR = Math.max(canvas.width, canvas.height) * 0.009;
+
+    holePoints.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, dotR, 0, Math.PI*2);
+      ctx.fillStyle = '#FACC15';
+      ctx.fill();
+      ctx.lineWidth = dotR * 0.3;
+      ctx.strokeStyle = '#2b0606';
+      ctx.stroke();
+    });
+
+    if (holePoints.length === 3 && radiusPx !== null){
+      ctx.beginPath();
+      ctx.arc(circleCenter.x, circleCenter.y, radiusPx, 0, Math.PI*2);
+      ctx.lineWidth = Math.max(canvas.width, canvas.height) * 0.005;
+      ctx.strokeStyle = '#FACC15';
+      ctx.setLineDash([6, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      ctx.beginPath();
+      ctx.arc(circleCenter.x, circleCenter.y, dotR * 0.7, 0, Math.PI*2);
+      ctx.fillStyle = '#FACC15';
+      ctx.fill();
+    }
+
+    calibPoints.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, dotR, 0, Math.PI*2);
+      ctx.fillStyle = '#4ade80';
+      ctx.fill();
+      ctx.lineWidth = dotR * 0.3;
+      ctx.strokeStyle = '#000';
+      ctx.stroke();
+    });
+    if (calibPoints.length === 2){
+      ctx.beginPath();
+      ctx.moveTo(calibPoints[0].x, calibPoints[0].y);
+      ctx.lineTo(calibPoints[1].x, calibPoints[1].y);
+      ctx.lineWidth = Math.max(canvas.width, canvas.height) * 0.004;
+      ctx.strokeStyle = '#4ade80';
+      ctx.stroke();
+    }
+  }
+
+  function computeHoleCircle(){
+    const [p1, p2, p3] = holePoints;
+    const A = p2.x - p1.x;
+    const B = p2.y - p1.y;
+    const C = p3.x - p1.x;
+    const D = p3.y - p1.y;
+    const E = A*(p1.x + p2.x) + B*(p1.y + p2.y);
+    const F = C*(p1.x + p3.x) + D*(p1.y + p3.y);
+    const G = 2*(A*(p3.y - p2.y) - B*(p3.x - p2.x));
+
+    if (Math.abs(G) < 1e-6){
+      alert("Points are collinear. Undo and click further apart.");
+      radiusPx = null;
+      return;
+    }
+
+    const cx = (D*E - B*F) / G;
+    const cy = (A*F - C*E) / G;
+    circleCenter = {x: cx, y: cy};
+    radiusPx = Math.sqrt((p1.x - cx)**2 + (p1.y - cy)**2);
+
+    radiusPxEl.textContent = radiusPx.toFixed(1) + " px";
+    resultBox.style.display = 'block';
+    calibrateBtn.disabled = false;
+    certBtn.disabled = false;
+
+    const imgDiag = Math.hypot(canvas.width, canvas.height);
+    const ratio = radiusPx / imgDiag;
+
+    if (ratio < 0.02) {
+      shortVerdict = "🚨 Bonda Detected (No Hole)";
+    } else if (ratio < 0.06) {
+      shortVerdict = "⚠️ Narrow Hole (Turbulence)";
+    } else if (ratio > 0.16) {
+      shortVerdict = "⚠️ Large Hole (Batter Saved)";
+    } else {
+      shortVerdict = "✅ Grade-A Medu Vada (Optimal)";
+    }
+
+    verdictText.textContent = shortVerdict;
+    redraw();
+  }
+
+  calibrateBtn.addEventListener('click', () => {
+    mode = 'calib';
+    calibPoints = [];
+    calibArea.style.display = 'block';
+    calibInputs.style.display = 'none';
+    realResultBox.style.display = 'none';
+    step4.classList.add('active');
+    redraw();
+  });
+
+  convertBtn.addEventListener('click', () => {
+    const len = parseFloat(knownLength.value);
+    if (!len || len <= 0 || calibPoints.length < 2) return;
+    const [c1, c2] = calibPoints;
+    const pixelDist = Math.sqrt((c2.x - c1.x)**2 + (c2.y - c1.y)**2);
+    const unitsPerPixel = len / pixelDist;
+    realRadiusVal = (radiusPx * unitsPerPixel).toFixed(2);
+    realRadiusUnit = unitSelect.value;
+    
+    radiusRealEl.textContent = realRadiusVal + " " + realRadiusUnit;
+    realResultBox.style.display = 'block';
+  });
+
+  resetBtn.addEventListener('click', () => {
+    img = null;
+    fileInput.value = '';
+    canvasWrap.classList.remove('show');
+    holePoints = [];
+    calibPoints = [];
+    radiusPx = null;
+    realRadiusVal = null;
+    mode = 'hole';
+    resultBox.style.display = 'none';
+    calibArea.style.display = 'none';
+    realResultBox.style.display = 'none';
+    calibrateBtn.disabled = true;
+    undoBtn.disabled = true;
+    certBtn.disabled = true;
+    step1.classList.add('active');
+    resetAutoToHome();
+  });
+
+  certBtn.addEventListener('click', () => {
+    drawCertificate();
+    certModal.style.display = 'flex';
+  });
+
+  closeCertBtn.addEventListener('click', () => {
+    certModal.style.display = 'none';
+  });
+
+  // =============================================================
+  // OFFICIAL CERTIFICATE RENDERER
+  // =============================================================
+  function drawCertificate(forceVector = false) {
+    const c = certCanvas.getContext('2d');
+    const w = certCanvas.width;
+    const h = certCanvas.height;
+
+    // Dark Indian Red Background
+    c.fillStyle = '#220505';
+    c.fillRect(0, 0, w, h);
+
+    // Outer Royal Border
+    c.strokeStyle = '#FACC15';
+    c.lineWidth = 6;
+    c.strokeRect(14, 14, w - 28, h - 28);
+    c.lineWidth = 1.5;
+    c.strokeRect(22, 22, w - 44, h - 44);
+
+    // Corner decorative accents
+    const corners = [[26, 26], [w - 26, 26], [26, h - 26], [w - 26, h - 26]];
+    corners.forEach(([cx, cy]) => {
+      c.fillStyle = '#FACC15';
+      c.beginPath();
+      c.arc(cx, cy, 4, 0, Math.PI * 2);
+      c.fill();
+    });
+
+    // Certificate Header
+    c.fillStyle = '#FACC15';
+    c.font = 'bold 26px "Anek Malayalam", sans-serif';
+    c.textAlign = 'center';
+    c.fillText('വടമെട്രിക്സ്™ CERTIFICATE', w/2, 65);
+
+    c.fillStyle = '#FEF08A';
+    c.font = '13px Courier, monospace';
+    c.fillText('OFFICIAL VADA METROLOGY RECORD', w/2, 92);
+
+    // Divider line
+    c.strokeStyle = 'rgba(250, 204, 21, 0.4)';
+    c.beginPath();
+    c.moveTo(50, 110); c.lineTo(w - 50, 110);
+    c.stroke();
+
+    // ==================== 1. VADA(S) ON THE CERTIFICATE ====================
+    const vImg = img || document.getElementById('landingVadaImg');
+    const vadaSize = 135;
+    const vadaX = 495;
+    const vadaY = 125;
+
+    c.save();
+    // Glowing golden pedestal behind Vada
+    const grad = c.createRadialGradient(vadaX + vadaSize/2, vadaY + vadaSize/2, 15, vadaX + vadaSize/2, vadaY + vadaSize/2, vadaSize/2 + 15);
+    grad.addColorStop(0, 'rgba(250, 204, 21, 0.28)');
+    grad.addColorStop(0.8, 'rgba(250, 204, 21, 0.06)');
+    grad.addColorStop(1, 'transparent');
+    c.fillStyle = grad;
+    c.beginPath();
+    c.arc(vadaX + vadaSize/2, vadaY + vadaSize/2, vadaSize/2 + 15, 0, Math.PI * 2);
+    c.fill();
+
+    // Outer dashed ring for specimen frame
+    c.strokeStyle = 'rgba(250, 204, 21, 0.55)';
+    c.lineWidth = 1.8;
+    c.setLineDash([5, 4]);
+    c.beginPath();
+    c.arc(vadaX + vadaSize/2, vadaY + vadaSize/2, vadaSize/2 + 8, 0, Math.PI * 2);
+    c.stroke();
+    c.setLineDash([]);
+
+    // Realistic Crispy Medu Vada Vector Renderer
+    function drawCrispyVada(ctx, cx, cy, r) {
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.65)';
+      ctx.shadowBlur = 14;
+      ctx.shadowOffsetY = 5;
+
+      // Golden crunchy crust gradient
+      const crustGrad = ctx.createRadialGradient(cx - r*0.2, cy - r*0.2, r*0.15, cx, cy, r);
+      crustGrad.addColorStop(0, '#fbbf24');
+      crustGrad.addColorStop(0.35, '#d97706');
+      crustGrad.addColorStop(0.75, '#b45309');
+      crustGrad.addColorStop(1, '#78350f');
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.arc(cx, cy, r * 0.36, 0, Math.PI * 2, true);
+      ctx.fillStyle = crustGrad;
+      ctx.fill();
+
+      ctx.shadowColor = 'transparent';
+
+      // Inner void depth shadow
+      const holeShadow = ctx.createRadialGradient(cx, cy, r * 0.32, cx, cy, r * 0.48);
+      holeShadow.addColorStop(0, '#260606');
+      holeShadow.addColorStop(1, 'transparent');
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.48, 0, Math.PI * 2);
+      ctx.arc(cx, cy, r * 0.35, 0, Math.PI * 2, true);
+      ctx.fillStyle = holeShadow;
+      ctx.fill();
+
+      // Golden sizzle highlight arch
+      ctx.strokeStyle = 'rgba(254, 240, 138, 0.45)';
+      ctx.lineWidth = r * 0.12;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.68, -Math.PI * 0.8, -Math.PI * 0.2);
+      ctx.stroke();
+
+      // Pepper corns & cumin seasoning flecks
+      const specs = [
+        [-0.42, -0.2], [0.35, -0.38], [0.48, 0.16], [-0.3, 0.46], 
+        [0.2, 0.5], [-0.5, 0.08], [0.08, -0.54], [-0.16, -0.42]
+      ];
+      specs.forEach(([dx, dy]) => {
+        ctx.beginPath();
+        ctx.arc(cx + dx * r, cy + dy * r, r * 0.045, 0, Math.PI * 2);
+        ctx.fillStyle = '#1c0902';
+        ctx.fill();
+      });
+      ctx.restore();
+    }
+
+    // Mini decorative crispy vadas flanking the title
+    drawCrispyVada(c, 75, 65, 18);
+    drawCrispyVada(c, w - 75, 65, 18);
+
+    // Draw primary inspected Vada
+    if (!forceVector && vImg && vImg.complete && vImg.naturalWidth > 0) {
+      c.drawImage(vImg, vadaX, vadaY, vadaSize, vadaSize);
+    } else {
+      drawCrispyVada(c, vadaX + vadaSize/2, vadaY + vadaSize/2, vadaSize/2 - 6);
+    }
+
+    // Specimen Label below Vada
+    c.fillStyle = '#FEF08A';
+    c.font = 'bold 11px Courier, monospace';
+    c.textAlign = 'center';
+    c.fillText('TESTED SPECIMEN VADA', vadaX + vadaSize/2, vadaY + vadaSize + 16);
+    c.restore();
+
+    // ==================== METROLOGY SPECIFICATIONS ====================
+    c.textAlign = 'left';
+    c.font = 'bold 15px Courier, monospace';
+    c.fillStyle = '#FEF08A';
+    c.fillText("HOLE RADIUS (PX) : " + (radiusPx ? radiusPx.toFixed(1) + " px" : "N/A"), 55, 160);
+    
+    if (realRadiusVal) {
+      c.fillText("ACTUAL SIZE      : " + realRadiusVal + " " + realRadiusUnit, 55, 198);
+    } else {
+      c.fillText("ACTUAL SIZE      : [UNRESTRICTED PIXEL SCALE]", 55, 198);
+    }
+
+    c.fillText("VERDICT          : " + shortVerdict, 55, 236);
+
+    // Classification line with "സർട്ടിഫൈഡ് വടയാടി"
+    c.fillStyle = '#FACC15';
+    c.font = 'bold 16px "Anek Malayalam", Courier, sans-serif';
+    c.fillText("പദവി / STATUS     : സർട്ടിഫൈഡ് വടയാടി", 55, 274);
+
+    // ==================== 2. COSSY (കൊസി) STAMP ON TOP OF AUTHORIZED INSPECTOR ====================
+    const inspLineY = h - 62;
+    const inspLineStartX = 55;
+    const inspLineEndX = 255;
+
+    // Authorized Inspector Title & Signature Line
+    c.textAlign = 'left';
+    c.fillStyle = '#FEF08A';
+    c.font = 'italic 13px Courier, monospace';
+    c.fillText('Authorized Inspector', inspLineStartX, h - 44);
+    c.strokeStyle = '#FEF08A';
+    c.lineWidth = 1.2;
+    c.beginPath();
+    c.moveTo(inspLineStartX, inspLineY); c.lineTo(inspLineEndX, inspLineY);
+    c.stroke();
+
+    // Cossy Stamp (കൊസി) right on top of the signature line
+    c.save();
+    c.translate(145, inspLineY - 32);
+    c.rotate(-0.11); // Authentic tilted rubber stamp angle
+
+    // Rubber stamp outer border (Crimson Red ink)
+    c.strokeStyle = 'rgba(239, 68, 68, 0.92)';
+    c.lineWidth = 2.4;
+    c.strokeRect(-72, -26, 144, 52);
+
+    // Rubber stamp inner dashed border
+    c.lineWidth = 1;
+    c.setLineDash([4, 2]);
+    c.strokeRect(-67, -21, 134, 42);
+    c.setLineDash([]);
+
+    // Malayalam text "കൊസി" (Cossy) in chunky bold
+    c.fillStyle = 'rgba(239, 68, 68, 0.95)';
+    c.textAlign = 'center';
+    c.font = '800 24px "Anek Malayalam", "Nirmala UI", sans-serif';
+    c.fillText('കൊസി', 0, 0);
+
+    // Subtitle inside stamp
+    c.font = 'bold 8.5px "Space Mono", monospace';
+    c.fillText('OFFICIAL STAMP • COSSY', 0, 14);
+    c.restore();
+
+    // Hand-signed fluid ink scribble over the stamp & signature line
+    c.save();
+    c.strokeStyle = 'rgba(96, 165, 250, 0.85)';
+    c.lineWidth = 2;
+    c.lineCap = 'round';
+    c.beginPath();
+    c.moveTo(70, inspLineY - 14);
+    c.bezierCurveTo(95, inspLineY - 34, 115, inspLineY - 6, 135, inspLineY - 24);
+    c.bezierCurveTo(155, inspLineY - 40, 180, inspLineY - 8, 220, inspLineY - 18);
+    c.stroke();
+    c.restore();
+
+    // ==================== 3. CERTIFIED VADAYADI (സർട്ടിഫൈഡ് വടയാടി) OFFICIAL SEAL ====================
+    c.save();
+    c.translate(w - 130, h - 90);
+    c.rotate(-0.06);
+
+    // Outer Gold Starburst / Circle
+    c.strokeStyle = '#FACC15';
+    c.lineWidth = 3.5;
+    c.beginPath();
+    c.arc(0, 0, 54, 0, Math.PI * 2);
+    c.stroke();
+
+    // Inner Dashed Gold Ring
+    c.lineWidth = 1.2;
+    c.setLineDash([4, 3]);
+    c.beginPath();
+    c.arc(0, 0, 48, 0, Math.PI * 2);
+    c.stroke();
+    c.setLineDash([]);
+
+    // Seal Texts in Malayalam: "സർട്ടിഫൈഡ് വടയാടി"
+    c.fillStyle = '#FACC15';
+    c.textAlign = 'center';
+    c.font = '800 13px "Anek Malayalam", "Nirmala UI", sans-serif';
+    c.fillText('സർട്ടിഫൈഡ്', 0, -10);
+
+    c.font = '800 16px "Anek Malayalam", "Nirmala UI", sans-serif';
+    c.fillText('വടയാടി', 0, 10);
+
+    c.font = 'bold 8px Courier, monospace';
+    c.fillStyle = '#FEF08A';
+    c.fillText('★ 100% VERIFIED ★', 0, 26);
+    c.restore();
+  }
+
+  downloadCertBtn.addEventListener('click', () => {
+    try {
+      const link = document.createElement('a');
+      link.download = 'vada-certificate.png';
+      link.href = certCanvas.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      console.warn('Canvas export tainted by local file, exporting with vector specimen:', err);
+      drawCertificate(true);
+      const link = document.createElement('a');
+      link.download = 'vada-certificate.png';
+      link.href = certCanvas.toDataURL('image/png');
+      link.click();
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
